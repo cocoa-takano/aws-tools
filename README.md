@@ -32,9 +32,12 @@ CIDR表記のIPアドレスからネットワーク情報を取得するスク�
 ---
 
 #### 4. CLIツール (`cli_tool/`)  
-ローカルディレクトリ内のファイル一覧を取得するスクリプトです。
+ローカルディレクトリ内のファイル一覧を取得するスクリプトと、タスク管理ツールを含みます。
 
 - **cli_tool.py**：指定したフォルダ内のファイル一覧を表示  
+- **add_task.py**：タスクを追加  
+- **view_task.py**：タスクの一覧を表示  
+- **delete_task.py**：タスクを削除   
 
 ---
 
@@ -92,3 +95,24 @@ python subnet_calculator/subnet_calculator.py
 python cli_tool/cli_tool.py
 ```  
 
+---
+
+#### **タスク管理ツール**
+
+- タスクを追加
+
+```bash
+python cli_tool/add_task.py
+```
+
+- タスクの一覧を表示
+
+```bash
+python cli_tool/view_task.py
+```
+
+- タスクを消去
+
+```bash
+python cli_tool/delete_task.py
+```
