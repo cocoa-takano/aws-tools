@@ -12,19 +12,23 @@ def delete_task():
             print("削除できるタスクがありません。")
             return
 
-        for idx, task in enumerate(tasks, start=1):
-            print(f"{idx}. {task}")
+        for task in tasks:
+            print(f"ID: {task['id']} - {task['task']}")
 
-        index = int(input("削除したいタスクの番号を入力してください: ")) - 1
+        try:
+            task_id = int(input("削除したいタスクのIDを入力してください: "))
+            task_index = next((i for i, t in enumerate(tasks) if t["id"] == task_id), None)
 
-        if 0 <= index < len(tasks):
-            deleted_task = tasks.pop(index)
-            with open(TASK_FILE, "w") as file:
-                json.dump(tasks, file)
+            if task_index is not None:
+                deleted_task = tasks.pop(task_index)
+                with open(TASK_FILE, "w") as file:
+                    json.dump(tasks, file)
+                print(f"タスク '{deleted_task['task']}' を削除しました！")
+            else:
+                print("無効なIDです。")
 
-            print(f"タスク '{deleted_task}' を削除しました！")
-        else:
-            print("無効な番号です。")
+        except ValueError:
+            print("数字で入力してください。")
 
     except FileNotFoundError:
         print("タスクファイルが存在しません。")

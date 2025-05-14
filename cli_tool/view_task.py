@@ -10,8 +10,8 @@ def view_task():
         if not tasks:
             print("タスクはありません。")
         else:
-            for idx, task in enumerate(tasks, start=1):
-                print(f"{idx}. {task}")
+            for task in tasks:
+                print(f"ID: {task['id']} - {task['task']}")
 
     except FileNotFoundError:
         print("タスクファイルが存在しません。")

@@ -5,6 +5,9 @@
 
 import boto3
 
+# グローバルで1度だけクライアント作成
+ec2 = boto3.client('ec2')
+
 def control_ec2(instance_id, action):
     """
     EC2インスタンスを起動または停止する関数
@@ -13,7 +16,6 @@ def control_ec2(instance_id, action):
     - instance_id (str): インスタンスID
     - action (str): "start" または "stop"
     """
-    ec2 = boto3.client('ec2')
     try:
         if action == "start":
             ec2.start_instances(InstanceIds=[instance_id])
@@ -28,5 +30,5 @@ def control_ec2(instance_id, action):
 
 if __name__ == "__main__":
     instance_id = input("Enter EC2 instance ID: ")
-    action = input("Enter action (start/stop): ")
+    action = input("Enter action (start/stop): ").strip().lower()
     control_ec2(instance_id, action)

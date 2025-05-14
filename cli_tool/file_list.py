@@ -1,5 +1,5 @@
 # ===============================
-# CLI ツール
+# ファイル一覧取得ツール
 # 指定したディレクトリ内のファイル一覧を表示する
 # ===============================
 
@@ -13,11 +13,19 @@ def list_files(directory):
     - directory (str): ディレクトリパス
     """
     try:
+        if not os.path.exists(directory):
+            print(f"ディレクトリ '{directory}' が見つかりません。")
+            return
+
         files = os.listdir(directory)
-        for file in files:
-            print(file)
+        if files:
+            for file in files:
+                print(file)
+        else:
+            print(f"'{directory}' 内にはファイルがありません。")
+
     except Exception as e:
-        print(f"Error listing files: {e}")
+        print(f"エラーが発生しました: {e}")
 
 if __name__ == "__main__":
     directory = input("Enter directory path: ")
